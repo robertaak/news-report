@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset = "utf-8">
-    <meta name = "viewport" content = "width = device width, initial scale =1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device width, initial scale =1">
+    <meta name="author" content="Roberta">
+    <meta name="description" content="Get all top headlines from TechCrunch.com here!">
     <title>Top news from TechCrunch</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="/app/Views/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/app/Views/Style/favicon-16x16.png">
+    <link rel="stylesheet" href="/app/Views/Style/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@300&display=swap"
+          rel="stylesheet">
 </head>
+
 <body>
-<h1>Top headlines from <a href="https://techcrunch.com/" target="_blank">TechCrunch.com</a></h1>
+<header class="header-left">
+    <h1 class="site-title">Trending in Tech Crunch:</h1>
+</header>
+
 {% for article in articles %}
-<ul>
-    <li>
-        <img src="{{ article.urlToImage }}>" alt="a beautiful image">
-        <a href="{{ article.url }}" target="_blank"><h2>{{ article.title }}</h2></a><br>
-        {{ article.description }}<br>
-    </li>
 
-</ul>
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <img src="{{ article.urlToImage }}" class="card-img-top" alt="a beautiful image">
+
+                <h2 class="card-title"><a href="{{ article.url }}" target="blank">{{ article.title }}</h2></a>
+                <p class="card-text">{{ article.description }}</p>
+
+        </div>
+    </div>
 {% endfor %}
+</div>
 
+<footer>
+    <h3><a href="#">Back to top</a></h3>
+</footer>
 </body>
 </html>
+
+
+
