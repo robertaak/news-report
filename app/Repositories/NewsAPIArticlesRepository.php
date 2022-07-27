@@ -4,24 +4,26 @@ namespace App\Repositories;
 
 use App\Models\Article;
 use App\Models\ArticlesCollection;
-use Dotenv\Dotenv;
 use GuzzleHttp\Client;
 
 class NewsAPIArticlesRepository implements ArticlesRepository
 {
+    private const API_URL = 'https://newsapi.org/v2/';
+
+    private Client $httpClient;
+
+    public function __construct()
+    {
+        $this->httpClient = new Client([
+            'base_uri' => self::API_URL
+        ]);
+    }
 
     public function getTopHeadlines(): ArticlesCollection
     {
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
+        $url = 'top-headlines?sources=techcrunch&apiKey=' . $_ENV['NEWSAPI_API_KEY'];
 
-        $api = $_ENV['API_KEY'];
-
-        $url = 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=';
-
-        $client = new Client();
-
-        $response = $client->get($url . $api);
+        $response = $this->httpClient->get($url);
 
         $response = (json_decode($response->getBody()));
 

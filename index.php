@@ -1,6 +1,12 @@
 <?php
 
+use App\Repositories\NewsAPIArticlesRepository;
+use Dotenv\Dotenv;
+
 require_once "vendor/autoload.php";
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'App\Controllers\ArticleController@show');
@@ -32,8 +38,11 @@ switch ($routeInfo[0]) {
         $loader = new \Twig\Loader\FilesystemLoader('app/Views');
         $twig = new \Twig\Environment($loader);
 
+        $container = new \DI\Container();
+        $container->set(\App\Repositories\ArticlesRepository::class, DI\create(NewsAPIArticlesRepository::class));
+
         /** @var \App\View $view */
-        $view = (new $controller)->$method();
+        $view = ($container->get($controller))->$method();
 
         $template = $twig->load($view->getTemplatePath());
         echo $template->render($view->getData());

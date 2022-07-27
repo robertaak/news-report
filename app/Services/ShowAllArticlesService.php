@@ -3,16 +3,15 @@
 namespace App\Services;
 
 use App\Models\ArticlesCollection;
-use App\Repositories\NewsAPIArticlesRepository;
 use App\Repositories\ArticlesRepository;
 
 class ShowAllArticlesService
 {
     private ArticlesRepository $articlesRepository;
 
-    public function __construct()
+    public function __construct(ArticlesRepository $articlesRepository)
     {
-        $this->articlesRepository = new NewsAPIArticlesRepository();
+        $this->articlesRepository = $articlesRepository;
     }
 
     public function execute(): ArticlesCollection

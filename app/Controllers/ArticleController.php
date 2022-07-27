@@ -7,10 +7,15 @@ use App\View;
 
 class ArticleController
 {
+    private ShowAllArticlesService $service;
+
+    public function __construct(ShowAllArticlesService $service)
+    {
+        $this->service = $service;
+    }
+
     public function show(): View
     {
-        $service = new ShowAllArticlesService();
-
-        return new View('articles-index.twig', ['articles' => $service->execute()->getAll()]);
+        return new View('articles-index.twig', ['articles' => $this->service->execute()->getAll()]);
     }
 }
