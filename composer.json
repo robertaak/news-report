@@ -14,7 +14,8 @@
         "ext-curl": "*",
         "vlucas/phpdotenv": "^5.4",
         "twbs/bootstrap": "^5.2",
-        "php-di/php-di": "^6.4"
+        "php-di/php-di": "^6.4",
+        "nesbot/carbon": "^2.60"
     },
     "config": {
         "allow-plugins": {
