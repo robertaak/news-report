@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device width, initial scale =1">
+    <meta name="author" content="Roberta">
+    <meta name="description" content="Get all top headlines from TechCrunch.com here!">
+    <title>Top news from TechCrunch</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/app/Views/Style/favicon-16x16.png">
+    <link rel="stylesheet" href="/app/Views/Style/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&family=Saira:ital,wght@0,100;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header class="header-left">
+    <h1 class="site-title">Add your article:</h1>
+</header>
+
+<form method="post" action="/articles">
+
+    <label for="{{ article.urlToImage }}">url to image:</label> <br>
+    <input type="text" id="{{ article.urlToImage }}" name="urlToImage"> <br>
+
+    <label for="{{ article.url }}">url to article:</label> <br>
+    <input type="text" id="{{ article.url }}" name="url"> <br>
+
+    <label for="{{ article.title }}">title:</label> <br>
+    <input type="text" id="{{ article.title }}" name="title"> <br>
+
+    <label for="{{ article.description }}">description:</label> <br>
+    <input type="text" id="{{ article.description }}" name="description"> <br>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

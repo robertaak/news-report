@@ -19,9 +19,9 @@ class NewsAPIArticlesRepository implements ArticlesRepository
         ]);
     }
 
-    public function getTopHeadlines(): ArticlesCollection
+    public function getAllByCategory($category): ArticlesCollection
     {
-        $url = 'top-headlines?sources=techcrunch&apiKey=' . $_ENV['NEWSAPI_API_KEY'];
+        $url = "top-headlines?country=us&category=$category&apiKey={$_ENV['NEWSAPI_API_KEY']}";
 
         $response = $this->httpClient->get($url);
 
@@ -29,15 +29,20 @@ class NewsAPIArticlesRepository implements ArticlesRepository
 
         $articles = [];
 
-        foreach ($response->articles as $article)
-        {
+        foreach ($response->articles as $article) {
             $articles[] = new Article(
-                $article->urlToImage,
-                $article->title,
-                $article->description,
-                $article->url
+                (string)$article->urlToImage,
+                (string)$article->title,
+                (string)$article->url,
+                (string)$article->description
             );
         }
+
         return new ArticlesCollection($articles);
+    }
+
+    public function save(Article $article): void
+    {
+        // TODO: Implement save() method.
     }
 }

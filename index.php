@@ -10,6 +10,8 @@ $dotenv->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'App\Controllers\ArticleController@show');
+    $r->addRoute('GET', '/articles/create', 'App\Controllers\ArticleController@create');
+    $r->addRoute('POST', '/articles', 'App\Controllers\ArticleController@store');
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -44,8 +46,10 @@ switch ($routeInfo[0]) {
         /** @var \App\View $view */
         $view = ($container->get($controller))->$method();
 
-        $template = $twig->load($view->getTemplatePath());
-        echo $template->render($view->getData());
+        if ($view) {
+            $template = $twig->load($view->getTemplatePath());
+            echo $template->render($view->getData());
+        }
 
         break;
 }

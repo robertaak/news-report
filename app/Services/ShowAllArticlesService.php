@@ -14,8 +14,8 @@ class ShowAllArticlesService
         $this->articlesRepository = $articlesRepository;
     }
 
-    public function execute(): ArticlesCollection
+    public function execute(string $category): ArticlesCollection
     {
-        return $this->articlesRepository->getTopHeadlines();
+        return $this->articlesRepository->getAllByCategory($category);
     }
 }

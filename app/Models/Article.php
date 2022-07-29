@@ -4,17 +4,19 @@ namespace App\Models;
 
 class Article
 {
-    private string $urlToImage;
-    private string $title;
-    private ?string $description;
-    private string $url;
+    private ?string $urlToImage;
+    private ?string $title;
 
-    public function __construct(string $urlToImage, string $title, string $description, string $url)
+    private ?string $url;
+    private ?string $description;
+
+    public function __construct(string $urlToImage, string $title, string $url, ?string $description)
     {
         $this->urlToImage = $urlToImage;
         $this->title = $title;
-        $this->description = $description;
         $this->url = $url;
+        $this->description = $description;
+
     }
 
     public function getUrl(): string
