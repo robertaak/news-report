@@ -1,6 +1,5 @@
 <?php
 
-use App\Repositories\NewsAPIArticlesRepository;
 use Dotenv\Dotenv;
 
 require_once "vendor/autoload.php";
@@ -10,8 +9,14 @@ $dotenv->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'App\Controllers\ArticleController@show');
-    $r->addRoute('GET', '/articles/create', 'App\Controllers\ArticleController@create');
+
+    $r->addRoute('GET', '/articles', 'App\Controllers\ArticleController@show');
+
+    $r->addRoute('GET', '/articles/create', 'App\Controllers\ArticleController@createArticle');
     $r->addRoute('POST', '/articles', 'App\Controllers\ArticleController@store');
+
+    $r->addRoute('GET', '/articles/created', 'App\Controllers\ArticleController@showAdded');
+
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -41,13 +46,13 @@ switch ($routeInfo[0]) {
         $twig = new \Twig\Environment($loader);
 
         $container = new \DI\Container();
-        $container->set(\App\Repositories\ArticlesRepository::class, DI\create(NewsAPIArticlesRepository::class));
+        $container->set(\App\Repositories\ArticlesRepository::class, DI\create(\App\Repositories\NewsAPIArticlesRepository::class));
 
         /** @var \App\View $view */
         $view = ($container->get($controller))->$method();
 
         if ($view) {
-            $template = $twig->load($view->getTemplatePath());
+            $template = $twig->load($view->getTemplatePath() . '.twig');
             echo $template->render($view->getData());
         }
 

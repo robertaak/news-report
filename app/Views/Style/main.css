@@ -3,7 +3,7 @@ html {
 }
 
 header {
-    background-color: #190061;
+    background-color: #1f213f;
     height: 80px;
     overflow: hidden;
     padding: 10px 0;
@@ -11,12 +11,16 @@ header {
 
 footer {
     height: 50px;
+    background-color: #1f213f;
+    text-align: center;
+    color: #ffffff;
+    margin-top: auto;
 }
 
 .column {
     float: left;
-    width: 31%;
-    padding: 20px 10px;
+    width: 30%;
+    padding: 20px 10px 20px 20px;
 }
 
 .row:after {
@@ -27,9 +31,8 @@ footer {
 
 .card {
 
-    padding: 20px;
     text-align: center;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     transition: 0.3s;
     border-radius: 5px;
     height: 600px;
@@ -43,8 +46,12 @@ footer {
         margin-bottom: 20px;
     }
 }
-
 .nav {
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #03040a;
 }
 .card-img-top {
     width: 100%;
@@ -62,34 +69,37 @@ footer {
 }
 
 .card:hover {
-    box-shadow:  20px 20px 20px rgba(0, 0, 0, 0.2);
+    box-shadow:  20px 20px 20px 20px rgba(0, 0, 0, 0.2);
 }
 
 a:link {
-    color: #190060;
+    color: #1f213f;
 }
 
 a:visited {
-    color: #5085A5;
+    color: #3d417c;
 }
 
 a:hover {
-    color: #8FC1E3;
+    color: #ecb959;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #eeeeee;
-    font-family: 'Saira', sans-serif;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
-    color: #eeeeee;
+    color: #ffffff;
     vertical-align: bottom;
     text-align: left;
-    font-size: 50px;
-    padding: 20px;
+    font-size: 35px;
+    padding: 30px ;
     margin: 0;
 }
 
@@ -111,9 +121,52 @@ a:hover {
 }
 
 a:active {
-    text-decoration: underline;
+    color: black;
+    border-bottom: 1px solid black;
 }
 form {
     padding: 20px;
+    justify-content: center;
 }
 
+.empty {
+    text-align-all: center;
+}
+.empty-box {
+    align-self: center;
+}
+
+.add {
+    align-self: center;
+    background: #1f213f;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    width: 500px;
+    height: 400px;
+}
+
+.add-text {
+    font-style: inherit;
+}
+
+.button {
+    border-radius: 5px;
+    width: 92%;
+    margin: 10px;
+    height: 30px;
+    font-size: 20px;
+    color: #1f213f;
+}
+
+.input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.add-text {
+    margin: 10px;
+}

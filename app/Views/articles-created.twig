@@ -5,30 +5,39 @@
     <meta name="viewport" content="width = device width, initial scale =1">
     <meta name="author" content="Roberta">
     <meta name="description" content="Get all top headlines from TechCrunch.com here!">
-    <title>Top news from TechCrunch</title>
+    <title>User added news</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/app/Views/Style/favicon-16x16.png">
     <link rel="stylesheet" href="/app/Views/Style/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&family=Saira:ital,wght@0,100;1,400&display=swap" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
 
 <body>
 <header class="header-left">
-    <h1 class="site-title">Added articles: </h1>
+    <h1 class="site-title">User created news</h1>
 </header>
 
-{% for article in articles %}
+<a href="/?category=general" class="nav">Home</a>
 
+{% if articles is empty %}
+    <div class="empty-box">
+        <h3 class="empty">Sorry, there are no articles yet.</h3>
+    </div>
+
+{% else %}
+
+{% for article in articles %}
 <div class="row">
     <div class="column">
         <div class="card">
-            <img src="{{ article.urlToImage }}" class="card-img-top" alt="a beautiful image">
+            <img src="{{ article.urlToImage }}" class="card-img-top" alt="">
             <h2 class="card-title"><a href="{{ article.url }}" target="blank">{{ article.title }}</a></h2>
-            <p class="card-text">{{ article.description }}</p>
-
         </div>
     </div>
     {% endfor %}
 </div>
+
+{% endif %}
 
 <footer>
     <h3 class="go-back"><a href="#">Back to top</a></h3>

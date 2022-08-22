@@ -19,7 +19,7 @@ class NewsAPIArticlesRepository implements ArticlesRepository
         ]);
     }
 
-    public function getAllByCategory($category): ArticlesCollection
+    public function getAllByCategory(string $category): ArticlesCollection
     {
         $url = "top-headlines?country=us&category=$category&apiKey={$_ENV['NEWSAPI_API_KEY']}";
 
@@ -33,8 +33,7 @@ class NewsAPIArticlesRepository implements ArticlesRepository
             $articles[] = new Article(
                 (string)$article->urlToImage,
                 (string)$article->title,
-                (string)$article->url,
-                (string)$article->description
+                (string)$article->url
             );
         }
 

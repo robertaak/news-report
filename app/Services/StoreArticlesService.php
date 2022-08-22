@@ -3,25 +3,31 @@
 namespace App\Services;
 
 use App\Models\Article;
-use App\Repositories\CsvArticlesRepository;
+use App\Models\ArticlesCollection;
+use App\Repositories\MySQLArticlesRepository;
 
 class StoreArticlesService
 {
-    private CsvArticlesRepository $csvArticlesRepository;
-    public function __construct(CsvArticlesRepository $csvArticlesRepository)
+    private MySQLArticlesRepository $mySQLArticlesRepository;
+
+    public function __construct(
+        MySQLArticlesRepository $mySQLArticlesRepository
+    )
+
     {
-        return $this->csvArticlesRepository = $csvArticlesRepository;
+        $this->mySQLArticlesRepository = $mySQLArticlesRepository;
+
     }
 
-    public function execute(StoreArticlesServiceRequest $request): void
+    public function execute(StoreArticlesServiceRequest $request): ArticlesCollection
     {
         $article = new Article(
+            $request->getUrlToImage(),
             $request->getTitle(),
-            $request->getDescription(),
             $request->getUrl(),
-            $request->getUrlToImage()
         );
 
-        $this->csvArticlesRepository->save($article);
+        $this->mySQLArticlesRepository->save($article);
+        return $this->mySQLArticlesRepository->getAllByCategory();
     }
 }

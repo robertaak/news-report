@@ -5,23 +5,22 @@ namespace App\Models;
 class Article
 {
     private ?string $urlToImage;
-    private ?string $title;
-
+    private string $title;
     private ?string $url;
-    private ?string $description;
+    private ?int $id;
 
-    public function __construct(string $urlToImage, string $title, string $url, ?string $description)
+    public function __construct(string $urlToImage, string $title, string $url, ?int $id = null)
     {
         $this->urlToImage = $urlToImage;
         $this->title = $title;
         $this->url = $url;
-        $this->description = $description;
+        $this->id = $id;
 
     }
 
     public function getUrl(): string
     {
-        return $this->url;
+        return !empty($this->url) ? $this->url : '/articles/' . $this->id;
     }
 
     public function getTitle(): string
@@ -29,14 +28,17 @@ class Article
         return $this->title;
     }
 
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
     public function getUrlToImage(): string
     {
-        return $this->urlToImage;
+        return !empty($this->urlToImage) ? $this->urlToImage : '/articles/' . $this->id;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
 }
