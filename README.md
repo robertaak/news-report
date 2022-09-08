@@ -15,8 +15,7 @@ Project is built implementing MVC pattern and OOP paradigm, and created in PHP 7
 
 #### Running the app
 
+- Run `composer install` in terminal to download all the dependencies
 - Run the site using built-in web server `php -S localhost:port`
 
-![Alt text](previews/home.png?raw=true "Title")
-![Alt text](previews/add-article.png?raw=true "Title")
-![Alt text](previews/no-posts.png?raw=true "Title")
+
